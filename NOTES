@@ -1,0 +1,169 @@
+#!/bin/bash
+# Github repo http link
+https://github.com/<user-name>/<repo-name>.git
+https://github.com/tirupati27/tools.git
+https://github.com/tirupati27/mycmd.git
+
+# Github repo SSH link
+git@github.com:<user-name>/<repo-name>.git
+git@github.com:tirupati27/tools.git
+git@github.com:tirupati27/mycmd.git
+
+# Github hosted page link
+https://<user-name>.github.io/<repo-name>/
+https://tirupati27.github.io/tools/
+https://tirupati27.github.io/tools/html_printer.js
+<script src="https://tirupati27.github.io/tools/html_printer.js"></script>
+https://tirupati27.github.io/mycmd/
+https://tirupati27.github.io/python-s-documentations/
+
+# Git commands
+git push origin main --force
+git remote add origin git@github.com:tirupati27/mycmd.git   # error: remote origin already exists.
+git remote set-url origin https://github.com/tirupati27/mycmd.git      # not give the above error
+git remote set-url origin git@github.com:tirupati27/mycmd.git      # not give the above error
+git remote -v
+git config --local --list
+git merge -X theirs/ours <branch-name>
+"rev-parse @" and "rev-parse HEAD" both are same
+git fetch origin              # fetch latest upstream (remote tracking)
+git checkout main             # switch to your local branch
+git reset --hard @{u}         # reset local branch to match upstream
+                              # @{u} is shorthand for your upstream branch (e.g., origin/main).
+                              # --hard discards all local commits and changes — your branch now exactly matches upstream.
+
+# PowerShell commands
+Get-ExecutionPolicy -List                             # To check the script execution policies
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser    # To allow running local scripts
+Set-ExecutionPolicy Restricted -Scope CurrentUser   # To restrict running local scripts
+echo $env:Path                                   # To check the PATH variable
+$env:Path += ";C:\path\to\add"                   # To add a new path to the PATH variable
+echo $PROFILE                   # To check the path of the PowerShell profile script (like .bashrc)
+Write-Host "Blue text" -ForegroundColor blue   # To print colored text in PowerShell
+cd "$env:USERPROFILE\desktop"          # To navigate to the desktop directory
+
+wsl --list --verbose            # check wsl version 1 or 2
+
+
+******************************************************
+[[ -z "$var" ]]     # Check for empty variable
+[[ -n "$var" ]]     # check for non empty variable
+********************************************************
+my_function > /dev/null                # Silence only stdout
+my_function 2> /dev/null               # Silence only stderr
+my_function > /dev/null 2>&1           # Silence both stdout and stderr
+my_function > /dev/null 2>&1 &         # Run silently in BACKGROUND asynchronously
+********************************************************
+if ! git -C "$MYCMD" rev-parse --is-inside-work-tree &>/dev/null; then
+    echo "$MYCMD is not a Git repository."
+    exit 1
+fi
+********************************************************
+if [[ "$response" =~ ^([Yy]|[Yy][Ee][Ss])$ ]]; then # Y, y, Yes, yes, yEs, YES (any case combination)
+********************************************************
+declare -xr MYCMD="$HOME/.mycmd"
+# -x → export (available to child processes)
+# -r → readonly (cannot be modified or unset)
+********************************************************
+# copyright format
+© [Year] [Your Name/Company]. All Rights Reserved
+********************************************************
+# Safe delete (only if fully merged)
+git branch -d branch_name
+# Force delete (even if not merged)
+git branch -D branch_name
+********************************************************
+#PIP commands
+# here, --upgrade and --requirement is equal to -U and -r
+#upgrade a package, the correct command is:
+pip install -U package_name
+pip freeze  # lists all installed packages with versions.
+pip freeze > requirements.txt    # save all installed packages to a file
+pip list --outdated --format=columns    # Show all outdated packages
+pip install -r requirements.txt     # recreate the environment
+pip install -U -r requirements.txt     # recreate the environment with newer versions
+********************************************************
+# how to know the absolute file name of a bash script in the runtime
+SCRIPT_PATH="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+# dirname extracts the directory portion from the full path
+********************************************************
+${str1,,}   # converts the string to lowercase
+# can be use for case insensitive comparison
+********************************************************
+# check last command fails or success
+if [[ $? -eq 0 ]]; then
+    echo "✅ Success"
+else
+    echo "❌ Failed"
+fi
+********************************************************
+ytdlp_command="yt-dlp \
+                -f ba+bv \
+                -o '%(playlist_title)s/%(playlist_index)s-%(title)s.%(ext)s' \
+                --merge-output-format mp4 \
+                --embed-thumbnail \
+                --write-thumbnail \
+                --ignore-errors \
+                --retries infinite \
+                --fragment-retries 10 \
+                $PLAYLIST_URL"
+********************************************************
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=9000 connectaddress=172.18.33.18 connectport=9000
+# netsh interface portproxy add v4tov4	    Create a port-forward rule that maps IPv4 → IPv4 traffic
+# listenaddress=0.0.0.0	                    Listen on all network interfaces on Windows (so it catches LAN/Wi-Fi connections)
+# listenport=4321	                        The port on Windows that external devices will connect to
+# connectaddress=172.24.112.18            	The internal WSL IP address where your Python server is running
+# connectport=4321	                        The port inside WSL you want to forward to (same one your Python server uses)
+netsh interface portproxy show all      # check all existing port forwardings
+netsh interface portproxy delete v4tov4 listenport=9000 listenaddress=0.0.0.0
+# the above command is to delete a rule
+********************************************************
+if command -v pip >/dev/null 2>&1; then
+    echo "✅ pip is available"
+else
+    echo "❌ pip not found"
+fi
+********************************************************
+if [ ${#my_array[@]} -eq 0 ]; then
+    echo "Array is empty"
+else
+    echo "Array has elements"
+fi
+********************************************************
+#In Windows Command Prompt (cmd.exe),
+#the command to clear the screen is simply:
+cls
+********************************************************
+# Termux setup commands
+termux-setup-storage
+pkg update && pkg upgrade -y
+pkg install which python3 git matplotlib rust zip clang wget make libxml2 libxslt ffmpeg
+# Already present in termux - unzip nano curl
+pip install --upgrade setuptools wheel
+pip install requests flask django yt-dlp fastapi python-multipart python-docx python-pptx pypdf2 pdf2image uvicorn httptools websockets watchfiles python-dotenv qrcode[pil] prompt-toolkit reportlab pandas
+# Already present in termux - numPy matplotlib pillow
+# can not be installed-- uvicorn[standard], scipy
+pip cache purge
+pkg clean
+# --------------------------------
+mkdir -p ~/bin
+mkdir -p ~/downloads
+cat << EOF > ~/bin/termux-file-editor
+#!/data/data/com.termux/files/usr/bin/sh
+nano "$1"
+EOF
+echo -e "\n\033[1;32mSetup complete!\033[0m"
+echo -e "\nNote: Turn on 'display over other apps' permission for Termux from Android settings.\n"
+********************************************************
+# To save multiple lines into a file in Bash
+cat << EOF > filename.txt
+Line 1
+Line 2
+Line 3
+EOF
+********************************************************
+# To check the size of a folder in human readable format
+du -sh /path/to/folder
+# To check the total size of a folder in human readable format including all its subfolders
+du -ch /path/to/folder
