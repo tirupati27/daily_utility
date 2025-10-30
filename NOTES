@@ -1,4 +1,5 @@
 #!/bin/bash
+******************************************************
 # Github repo http link
 https://github.com/<user-name>/<repo-name>.git
 https://github.com/tirupati27/tools.git
@@ -9,7 +10,7 @@ git@github.com:<user-name>/<repo-name>.git
 git@github.com:tirupati27/tools.git
 git@github.com:tirupati27/mycmd.git
 
-# Github hosted page link
+# Github hosted page link and other links
 https://<user-name>.github.io/<repo-name>/
 https://tirupati27.github.io/tools/
 https://tirupati27.github.io/tools/html_printer.js
@@ -17,6 +18,7 @@ https://tirupati27.github.io/tools/html_printer.js
 https://tirupati27.github.io/mycmd/
 https://tirupati27.github.io/python-s-documentations/
 
+******************************************************
 # Git commands
 git push origin main --force
 git remote add origin git@github.com:tirupati27/mycmd.git   # error: remote origin already exists.
@@ -31,7 +33,7 @@ git checkout main             # switch to your local branch
 git reset --hard @{u}         # reset local branch to match upstream
                               # @{u} is shorthand for your upstream branch (e.g., origin/main).
                               # --hard discards all local commits and changes — your branch now exactly matches upstream.
-
+******************************************************
 # PowerShell commands
 Get-ExecutionPolicy -List                             # To check the script execution policies
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser    # To allow running local scripts
@@ -41,10 +43,7 @@ $env:Path += ";C:\path\to\add"                   # To add a new path to the PATH
 echo $PROFILE                   # To check the path of the PowerShell profile script (like .bashrc)
 Write-Host "Blue text" -ForegroundColor blue   # To print colored text in PowerShell
 cd "$env:USERPROFILE\desktop"          # To navigate to the desktop directory
-
 wsl --list --verbose            # check wsl version 1 or 2
-
-
 ******************************************************
 [[ -z "$var" ]]     # Check for empty variable
 [[ -n "$var" ]]     # check for non empty variable
@@ -142,8 +141,8 @@ pkg install which python3 git matplotlib rust zip clang wget make libxml2 libxsl
 # Already present in termux - unzip nano curl
 pip install --upgrade setuptools wheel
 pip install requests flask django yt-dlp fastapi python-multipart python-docx python-pptx pypdf2 pdf2image uvicorn httptools websockets watchfiles python-dotenv qrcode[pil] prompt-toolkit reportlab pandas
-# Already present in termux - numPy matplotlib pillow
-# can not be installed-- uvicorn[standard], scipy
+# Note: 'pkg install matplotlib' will also install the pip packages-- numPy matplotlib pillow 
+# Dont try to install-- uvicorn[standard], scipy
 pip cache purge
 pkg clean
 # --------------------------------
@@ -167,3 +166,13 @@ EOF
 du -sh /path/to/folder
 # To check the total size of a folder in human readable format including all its subfolders
 du -ch /path/to/folder
+********************************************************
+# Compress multiple files or folders
+zip -r archive.zip file1.txt file2.txt folder1 folder2
+zip -r project.zip /home/user/project   # compress a single folder
+# Extract a zip file
+unzip archive.zip -d /path/to/destination_folder
+unzip -o archive.zip -d /path/to/destination_folder   # overwrite existing files without prompting
+unzip archive.zip    # extract in the current directory
+unzip -l archive.zip   # list contents of zip file
+********************************************************
